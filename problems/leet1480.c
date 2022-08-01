@@ -3,30 +3,23 @@
 
 void runningSum(int *array, int size)
 {
+    int answer[5];
+    answer[0] = array[0];
+    for (int i = 1; i < size; i++)
+    {
+        answer[i] = array[i] + answer[i - 1];
+    }
+    printf("running sum array\n");
     for (int i = 0; i < size; i++)
     {
-        for (int j = i - 1; j >= 0; j--)
-        {
-            array[i] = array[i] + array[j];
-            printf("within loop for i = %d sum is %d \n", i, array[i]);
-        }
+        printf("%d ", answer[i]);
     }
 }
 
 int main()
 {
-    int array[] = {1, 2, 3, 4};
-    int size = sizeof(array) / sizeof(array[0]);
-    printf("array before modification\n");
-    for (int i = 0; i < size; i++)
-    {
-        printf("%d ", array[i]);
-    }
-    runningSum(&array[0], size);
-    printf("\narray after modification");
-    for (int k = 0; k < size; k++)
-    {
-        printf("%d ", array[k]); // 1 2 3 4 -> 1 3 6 10
-    }
+    int nums[] = {3, 1, 2, 10, 1};
+    int size = sizeof(nums) / sizeof(nums[0]);
+    runningSum(&nums[0], size);
     return 0;
 }
